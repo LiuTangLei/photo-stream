@@ -6,7 +6,9 @@ RUN apk update && apk upgrade &&\
     apk add --update --no-cache build-base glib-dev libexif-dev expat-dev tiff-dev jpeg-dev libgsf-dev git rsync lftp openssh &&\
     rm -rf /var/cache/apk/*
 
-RUN wget -O ./vips-$VIPSVER.tar.gz https://github.com/libvips/libvips/releases/download/v$VIPSVER/vips-$VIPSVER.tar.gz && tar -xvzf ./vips-$VIPSVER.tar.gz && cd vips-$VIPSVER && ./configure && make && make install && cd .. && rm -r vips-$VIPSVER.tar.gz vips-$VIPSVER
+RUN wget -O ./vips-$VIPSVER.tar.gz https://github.com/libvips/libvips/releases/download/v$VIPSVER/vips-$VIPSVER.tar.gz
+
+RUN tar -xvzf ./vips-$VIPSVER.tar.gz && cd vips-$VIPSVER && ./configure && make && make install
 
 COPY ./ /photo-stream 
 
